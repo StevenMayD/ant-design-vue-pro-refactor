@@ -1,9 +1,51 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import BasicLayout from "../layouts/basic-layout.vue"; // 总布局路由页面
+import Overview from "../views/main/overview/overview.vue"; // 总览路由页面
+import Analysis from "../views/main/dashboard/analysis.vue"; // 仪表盘路由页面
+import Form from "../views/main/form/form.vue"; // 表单路由页面
+import BasicForm from "../views/main/form/basicForm/basic-form.vue"; // 基础表单
+import StepForm from "../views/main/form/stepForm/step-form.vue"; // 分布表单
 
 const routes = [
   {
-    path: "/",
+    // 添加总体布局页 路由配置（其他含有相同主体布局的页面，都在总体布局路由下的子路由）
+    path: "/", // 默认地址
+    name: "BasicLayout",
+    component: BasicLayout,
+    children: [
+      {
+        path: "/",
+        name: "Overview",
+        component: Overview,
+      },
+      {
+        path: "/analysis",
+        name: "Analysis",
+        component: Analysis,
+      },
+      {
+        path: "/form",
+        name: "Form",
+        component: Form,
+        // form下的子表单路由配置
+        children: [
+          {
+            path: "/form/basicForm", // 子路由链接要写全
+            name: "BasicForm",
+            component: BasicForm,
+          },
+          {
+            path: "/form/stepForm",
+            name: "StepForm",
+            component: StepForm,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/home",
     name: "Home",
     component: Home,
   },

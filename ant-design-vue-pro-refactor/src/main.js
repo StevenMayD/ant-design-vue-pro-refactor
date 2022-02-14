@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-// 引入antdesign样式
+// 引入antdesign样式集
 import "ant-design-vue/dist/antd.css";
 // 引入antdesign组件
 import { Layout, Menu, SubMenu, Breadcrumb } from "ant-design-vue";
