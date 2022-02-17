@@ -3,6 +3,7 @@ import App from "./App.vue";
 
 // 全局引入router后 子页面可以直接通过this.$router使用
 import router from "./router";
+// 仓库store，基本上就是一个容器，它包含一个属性state（应用中大部分的状态，可用于保存页面间传递的数据)
 import store from "./store";
 
 // 引入antdesign样式集

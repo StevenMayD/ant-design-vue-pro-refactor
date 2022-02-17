@@ -35,7 +35,11 @@ export default defineComponent({
   },
   methods: {
     nextStep() {
-      this.$router.push("/form/stepForm/confirm");
+      // 将router, store从this中取出
+      const { $router, $store } = this;
+      // store仓库的state属性，用于存储数据(像NSUserDefault那样)
+      $store.state.payAccount = this.formState.fieldA;
+      $router.push("/form/stepForm/confirm");
     },
   },
 });
