@@ -11,7 +11,7 @@
         <a-breadcrumb-item>{{ subForm }}</a-breadcrumb-item>
       </a-breadcrumb>
       <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-        {{ subFormName }}
+        <p>{{ subFormName }}</p>
         <!-- 路由占位符: 用于加载子表单页面 -->
         <router-view />
       </div>
@@ -50,7 +50,7 @@ export default {
   computed: {
     // 页面上的subFormName数据，依赖subForm的变动而变动
     subFormName: function () {
-      return this.subForm;
+      return this.subForm + "-内容";
     },
   },
 
