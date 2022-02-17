@@ -85,7 +85,7 @@ export default defineComponent({
       this.$router.push("/form/basicForm");
     },
     stepFormClick() {
-      this.$router.push("/form/stepForm");
+      this.$router.push("/form/stepForm/info");
     },
   },
 });

@@ -6,6 +6,9 @@ import Analysis from "../views/main/dashboard/analysis.vue"; // 仪表盘路由�
 import Form from "../views/main/form/form.vue"; // 表单路由页面
 import BasicForm from "../views/main/form/basicForm/basic-form.vue"; // 基础表单
 import StepForm from "../views/main/form/stepForm/step-form.vue"; // 分布表单
+import Step1 from "../views/main/form/stepForm/step1.vue"; // 分布表单
+import Step2 from "../views/main/form/stepForm/step2.vue"; // 分布表单
+import Step3 from "../views/main/form/stepForm/step3.vue"; // 分布表单
 
 const routes = [
   {
@@ -39,6 +42,23 @@ const routes = [
             path: "/form/stepForm",
             name: "StepForm",
             component: StepForm,
+            children: [
+              {
+                path: "/form/stepForm/info",
+                name: "Step1",
+                component: Step1,
+              },
+              {
+                path: "/form/stepForm/confirm",
+                name: "Step2",
+                component: Step2,
+              },
+              {
+                path: "/form/stepForm/result",
+                name: "Step3",
+                component: Step3,
+              },
+            ],
           },
         ],
       },
