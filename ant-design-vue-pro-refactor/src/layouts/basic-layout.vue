@@ -9,7 +9,7 @@
       <!-- 菜单 -->
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <!-- 菜单项 -->
-        <a-menu-item key="1">
+        <a-menu-item key="1" @click="overViewClick">
           <pie-chart-outlined /><span>总览</span>
         </a-menu-item>
         <!-- 含子菜单的菜单项 -->
@@ -17,14 +17,14 @@
           <template #title>
             <span> <user-outlined /><span>仪表盘</span> </span>
           </template>
-          <a-menu-item key="2">分析页</a-menu-item>
+          <a-menu-item key="2" @click="analysisClick">分析页</a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <template #title>
             <span><team-outlined /><span>表单</span> </span>
           </template>
-          <a-menu-item key="3">基础表单</a-menu-item>
-          <a-menu-item key="4">分布表单</a-menu-item>
+          <a-menu-item key="3" @click="basicFormClick">基础表单</a-menu-item>
+          <a-menu-item key="4" @click="stepFormClick">分布表单</a-menu-item>
         </a-sub-menu>
       </a-menu>
     </a-layout-sider>
@@ -52,9 +52,27 @@ export default defineComponent({
   },
 
   data() {
+    // data()中放置页面上@click的方法
+    const overViewClick = () => {
+      this.$router.push("/");
+    };
+    const analysisClick = () => {
+      this.$router.push("/analysis");
+    };
+    const basicFormClick = () => {
+      this.$router.push("/form/basicForm");
+    };
+    const stepFormClick = () => {
+      this.$router.push("/form/stepForm");
+    };
+
     return {
       collapsed: ref(false),
       selectedKeys: ref(["1"]),
+      overViewClick,
+      analysisClick,
+      basicFormClick,
+      stepFormClick,
     };
   },
 });

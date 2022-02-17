@@ -1,5 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+
+// 全局引入router后 子页面可以直接通过this.$router使用
 import router from "./router";
 import store from "./store";
 
