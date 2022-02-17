@@ -50,30 +50,43 @@ export default defineComponent({
     UserOutlined,
     TeamOutlined,
   },
-
+  // // data()中放置初始化变量, 也可放置页面上@click的方法
   data() {
-    // data()中放置页面上@click的方法
-    const overViewClick = () => {
-      this.$router.push("/");
-    };
-    const analysisClick = () => {
-      this.$router.push("/analysis");
-    };
-    const basicFormClick = () => {
-      this.$router.push("/form/basicForm");
-    };
-    const stepFormClick = () => {
-      this.$router.push("/form/stepForm");
-    };
-
+    // const overViewClick = () => {
+    //   this.$router.push("/");
+    // };
+    // const analysisClick = () => {
+    //   this.$router.push("/analysis");
+    // };
+    // const basicFormClick = () => {
+    //   this.$router.push("/form/basicForm");
+    // };
+    // const stepFormClick = () => {
+    //   this.$router.push("/form/stepForm");
+    // };
     return {
       collapsed: ref(false),
       selectedKeys: ref(["1"]),
-      overViewClick,
-      analysisClick,
-      basicFormClick,
-      stepFormClick,
+      // overViewClick,
+      // analysisClick,
+      // basicFormClick,
+      // stepFormClick,
     };
+  },
+  // 放置页面@click方法或自定义方法
+  methods: {
+    overViewClick() {
+      this.$router.push("/");
+    },
+    analysisClick() {
+      this.$router.push("/analysis");
+    },
+    basicFormClick() {
+      this.$router.push("/form/basicForm");
+    },
+    stepFormClick() {
+      this.$router.push("/form/stepForm");
+    },
   },
 });
 </script>
