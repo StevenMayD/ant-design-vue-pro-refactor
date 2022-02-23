@@ -80,15 +80,20 @@ export default defineComponent({
   },
   methods: {
     commit() {
-      this.$router.push("/form/stepForm/result");
+      // 将router, store从this中取出
+      const { $router, $store } = this;
+      $store.state.salesman = "拜登";
+      $router.push("/form/stepForm/result");
     },
     testChange() {
+      // 将router, store从this中取出
+      const { $store } = this;
       /* 
       由于computed定义的是响应式变量，但data()只是初始化定义变量
       salesman变量会变化，payAccount不会变
       */
-      this.$store.state.payAccount = "10086";
-      this.$store.state.salesman = "特朗普";
+      $store.state.payAccount = "10086";
+      $store.state.salesman = this.formState.recAcc; // methods中使用setup中的变量 需要加this
     },
   },
 });

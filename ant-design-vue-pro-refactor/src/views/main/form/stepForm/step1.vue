@@ -7,7 +7,13 @@
       :rules="rules"
       v-bind="layout"
     >
-      <a-form-item has-feedback label="付款账号" name="payAccount">
+      <a-form-item
+        has-feedback
+        label="付款账号"
+        name="payAccount"
+        :validateStatus="formState.payAccountStatus"
+        :help="formState.payAccountHelp"
+      >
         <a-input
           v-model:value="formState.payAccount"
           placeholder="请输入付款账号"
@@ -15,21 +21,40 @@
           autocomplete="off"
         />
       </a-form-item>
-      <a-form-item has-feedback label="收款账号" name="recAccount">
+      <a-form-item
+        has-feedback
+        label="收款账号"
+        name="recAccount"
+        :validateStatus="formState.recAccountStatus"
+        :help="formState.recAccountHelp"
+      >
         <a-input
           v-model:value="formState.recAccount"
           placeholder="请输入收款账号"
           autocomplete="off"
         />
       </a-form-item>
-      <a-form-item has-feedback label="业务员" name="salesman">
+      <a-form-item
+        has-feedback
+        label="业务员"
+        name="salesman"
+        :validateStatus="formState.salesmanStatus"
+        :help="formState.salesmanHelp"
+      >
         <a-input
           v-model:value="formState.salesman"
           placeholder="请输入业务员姓名"
         />
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" @click="nextStep">下一步</a-button>
+        <a-row>
+          <a-col :span="4">
+            <a-button type="primary" @click="nextStep">下一步</a-button>
+          </a-col>
+          <a-col :span="1">
+            <a-button type="primary" @click="reset">重置</a-button>
+          </a-col>
+        </a-row>
       </a-form-item>
     </a-form>
   </div>
@@ -37,13 +62,26 @@
 
 <script>
 import { defineComponent, reactive, ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import { message } from "ant-design-vue";
+
 export default defineComponent({
   setup() {
+    const router = useRouter();
+    const store = useStore();
+
     const formRef = ref();
     const formState = reactive({
       payAccount: "",
       recAccount: "",
       salesman: "",
+      payAccountStatus: "",
+      payAccountHelp: "",
+      recAccountStatus: "",
+      recAccountHelp: "",
+      salesmanStatus: "",
+      salesmanHelp: "",
     });
     // 表单布局
     const layout = {
@@ -56,7 +94,7 @@ export default defineComponent({
         span: 14,
       },
     };
-    // 表单校验规则
+    // 表单动态校验规则
     const rules = {
       // 要求a-form-item中有标识 name="payAccount"
       payAccount: [
@@ -91,23 +129,42 @@ export default defineComponent({
         },
       ],
     };
+    const nextStep = () => {
+      // 表单提交校验：通过双向绑定进行校验
+      if (formState.payAccount === "") {
+        // form表单组件自带校验提示
+        formState.payAccountStatus = "error";
+        formState.payAccountHelp = "请输入付款账号!";
+      }
+      if (formState.recAccount === "") {
+        formState.recAccountStatus = "warning";
+        formState.recAccountHelp = "请输入收款账号!";
+      }
+      if (formState.salesman === "") {
+        formState.salesmanStatus = "success";
+        formState.salesmanHelp = "请输入业务员!";
+      } else {
+        // message组件提示
+        message.success("校验通过!");
+        // store仓库的state属性，用于存储数据(像NSUserDefault那样)
+        store.state.payAccount = formState.payAccount;
+        store.state.recAccount = formState.recAccount;
+        store.state.salesman = formState.salesman;
+        router.push("/form/stepForm/confirm");
+      }
+    };
+    const reset = () => {
+      // 表单重置
+      formRef.value.resetFields();
+    };
     return {
       formState,
       formRef,
       rules,
       layout,
+      nextStep,
+      reset,
     };
-  },
-  methods: {
-    nextStep() {
-      // 将router, store从this中取出
-      const { $router, $store } = this;
-      // store仓库的state属性，用于存储数据(像NSUserDefault那样)
-      $store.state.payAccount = this.formState.payAccount;
-      $store.state.recAccount = this.formState.recAccount;
-      $store.state.salesman = this.formState.salesman;
-      $router.push("/form/stepForm/confirm");
-    },
   },
 });
 </script>
