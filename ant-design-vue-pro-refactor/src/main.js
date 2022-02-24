@@ -21,6 +21,7 @@ import {
   Radio, // 单选项目组
   Row, // 栅格
   Col, // 栅格列
+  Drawer, // 抽屉
 } from "ant-design-vue";
 
 // vue3.0 注册组件
@@ -38,4 +39,5 @@ createApp(App)
   .use(Radio)
   .use(Row)
   .use(Col)
+  .use(Drawer)
   .mount("#app");

@@ -27,6 +27,8 @@
           <a-menu-item key="4" @click="stepFormClick">分布表单</a-menu-item>
         </a-sub-menu>
       </a-menu>
+      <!-- 侧边抽屉 -->
+      <SettingDrawer />
     </a-layout-sider>
 
     <!-- 路由占位符: 用于加载子页面 -->
@@ -42,6 +44,8 @@ import {
   TeamOutlined,
 } from "@ant-design/icons-vue";
 import { defineComponent, ref } from "vue";
+// 命名为index.vue可以../components/SettingDrawer 否则需要引入详细地址
+import SettingDrawer from "../components/SettingDrawer/settingDrawer";
 
 export default defineComponent({
   // 注册组件(提供使用)
@@ -49,6 +53,7 @@ export default defineComponent({
     PieChartOutlined,
     UserOutlined,
     TeamOutlined,
+    SettingDrawer, // 组件不是路由 需要注册组件
   },
   // // data()中放置初始化变量, 也可放置页面上@click的方法
   data() {
