@@ -36,12 +36,21 @@
           <a-menu-item key="4" @click="stepFormClick">分布表单</a-menu-item>
         </a-sub-menu>
       </a-menu>
-      <!-- 侧边抽屉 -->
-      <SettingDrawer />
     </a-layout-sider>
 
-    <!-- 路由占位符: 用于加载子页面 -->
-    <router-view />
+    <!-- 侧边抽屉 -->
+    <SettingDrawer />
+
+    <a-layout>
+      <!-- 顶部部分（子页面公共部分） -->
+      <a-layout-header style="background: #fff; padding: 0" />
+      <!-- 路由占位符: 用于加载子页面 -->
+      <router-view />
+      <!-- 底部部分（子页面公共部分）-->
+      <a-layout-footer style="text-align: center">
+        Ant Design ©2022 Created by 董帅文
+      </a-layout-footer>
+    </a-layout>
   </a-layout>
 </template>
 
@@ -64,8 +73,9 @@ export default defineComponent({
     TeamOutlined,
     SettingDrawer, // 组件不是路由 需要注册组件
   },
+  // computed定义响应式数据 会根据路由参数变化而变化
   computed: {
-    // computed定义响应式数据 会根据路由参数变化而变化
+    // 控制主题色
     navStyle() {
       return this.$route.query.navStyle || "dark";
     },
