@@ -27,6 +27,16 @@
         <a-radio value="light">白色</a-radio>
       </a-radio-group>
     </div>
+    <div>
+      <h3>导航位置</h3>
+      <a-radio-group
+        v-model:value="navLayout"
+        @change="(e) => navChange('navLayout', e.target.value)"
+      >
+        <a-radio value="left">左侧</a-radio>
+        <a-radio value="top">顶部</a-radio>
+      </a-radio-group>
+    </div>
   </a-drawer>
 </template>
 
@@ -49,6 +59,9 @@ export default defineComponent({
     */
     navStyle() {
       return this.$route.query.navStyle || "dark";
+    },
+    navLayout() {
+      return this.$route.query.navLayout || "left";
     },
   },
   setup() {

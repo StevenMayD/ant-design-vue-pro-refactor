@@ -3,6 +3,7 @@
   <a-layout id="components-layout-demo-side" style="min-height: 100vh">
     <!-- 侧边：collapsible可伸缩 -->
     <a-layout-sider
+      v-if="navLayout"
       v-model:collapsed="collapsedValue"
       collapsible
       :theme="navStyle"
@@ -15,7 +16,7 @@
       <a-menu
         v-model:selectedKeys="selectedKeys"
         :theme="navStyle"
-        mode="inline"
+        :mode="navLayout ? 'inline' : 'horizontal'"
       >
         <!-- 菜单项 -->
         <a-menu-item key="1" @click="overViewClick">
@@ -43,7 +44,34 @@
 
     <a-layout>
       <!-- 顶部部分（子页面公共部分） -->
-      <a-layout-header style="background: #fff; padding: 0" />
+      <a-layout-header style="background: #fff; padding: 0">
+        <!-- 菜单 -->
+        <a-menu
+          v-if="!navLayout"
+          v-model:selectedKeys="selectedKeys"
+          :theme="navStyle"
+          :mode="navLayout ? 'inline' : 'horizontal'"
+        >
+          <!-- 菜单项 -->
+          <a-menu-item key="1" @click="overViewClick">
+            <pie-chart-outlined /><span>总览</span>
+          </a-menu-item>
+          <!-- 含子菜单的菜单项 -->
+          <a-sub-menu key="sub1">
+            <template #title>
+              <span> <user-outlined /><span>仪表盘</span> </span>
+            </template>
+            <a-menu-item key="2" @click="analysisClick">分析页</a-menu-item>
+          </a-sub-menu>
+          <a-sub-menu key="sub2">
+            <template #title>
+              <span><team-outlined /><span>表单</span> </span>
+            </template>
+            <a-menu-item key="3" @click="basicFormClick">基础表单</a-menu-item>
+            <a-menu-item key="4" @click="stepFormClick">分布表单</a-menu-item>
+          </a-sub-menu>
+        </a-menu>
+      </a-layout-header>
       <!-- 路由占位符: 用于加载子页面 -->
       <router-view />
       <!-- 底部部分（子页面公共部分）-->
@@ -79,6 +107,9 @@ export default defineComponent({
     navStyle() {
       return this.$route.query.navStyle || "dark";
     },
+    navLayout() {
+      return (this.$route.query.navLayout || "left") === "left" ? true : false;
+    },
   },
   // // data()中放置初始化变量, 也可放置页面上@click的方法
   data() {
@@ -106,16 +137,28 @@ export default defineComponent({
   // 放置页面@click方法或自定义方法
   methods: {
     overViewClick() {
-      this.$router.push("/");
+      // this.$router.push("/");
+      // 携带着当前参数进行路由跳转
+      this.$router.push({ path: "/", query: { ...this.$route.query } });
     },
     analysisClick() {
-      this.$router.push("/analysis");
+      // this.$router.push("/analysis");
+      // 携带着当前参数进行路由跳转
+      this.$router.push({ path: "/analysis", query: { ...this.$route.query } });
     },
     basicFormClick() {
-      this.$router.push("/form/basicForm");
+      // this.$router.push("/form/basicForm");
+      this.$router.push({
+        path: "/form/basicForm",
+        query: { ...this.$route.query },
+      });
     },
     stepFormClick() {
-      this.$router.push("/form/stepForm/info");
+      // this.$router.push("/form/stepForm/info");
+      this.$router.push({
+        path: "/form/stepForm/info",
+        query: { ...this.$route.query },
+      });
     },
   },
 });
