@@ -19,6 +19,10 @@ const routes = [
     children: [
       {
         path: "/",
+        redirect: "/overview", // 添加重定向跳转：默认/ 跳转到/overview
+      },
+      {
+        path: "/overview",
         name: "Overview",
         component: Overview,
       },

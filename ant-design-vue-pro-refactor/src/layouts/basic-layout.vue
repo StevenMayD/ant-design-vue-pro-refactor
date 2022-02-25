@@ -2,12 +2,21 @@
   <!-- 容器主体：Layout布局容器，其下可嵌套 Header Sider Content Footer 或 Layout 本身，可以放在任何父容器中 -->
   <a-layout id="components-layout-demo-side" style="min-height: 100vh">
     <!-- 侧边：collapsible可伸缩 -->
-    <a-layout-sider v-model:collapsed="collapsed" collapsible>
+    <a-layout-sider
+      v-model:collapsed="collapsedValue"
+      collapsible
+      :theme="navStyle"
+    >
+      <!-- 利用theme属性和navStyle变量 动态设置主题色 -->
       <div class="logo">
         <img src="@/assets/logo.png" style="width: 30px; height: 30px" />
       </div>
       <!-- 菜单 -->
-      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+      <a-menu
+        v-model:selectedKeys="selectedKeys"
+        :theme="navStyle"
+        mode="inline"
+      >
         <!-- 菜单项 -->
         <a-menu-item key="1" @click="overViewClick">
           <pie-chart-outlined /><span>总览</span>
@@ -55,6 +64,12 @@ export default defineComponent({
     TeamOutlined,
     SettingDrawer, // 组件不是路由 需要注册组件
   },
+  computed: {
+    // computed定义响应式数据 会根据路由参数变化而变化
+    navStyle() {
+      return this.$route.query.navStyle || "dark";
+    },
+  },
   // // data()中放置初始化变量, 也可放置页面上@click的方法
   data() {
     // const overViewClick = () => {
@@ -70,7 +85,7 @@ export default defineComponent({
     //   this.$router.push("/form/stepForm");
     // };
     return {
-      collapsed: ref(false),
+      collapsedValue: ref(false),
       selectedKeys: ref(["1"]),
       // overViewClick,
       // analysisClick,
