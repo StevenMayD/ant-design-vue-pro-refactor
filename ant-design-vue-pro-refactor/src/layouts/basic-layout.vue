@@ -39,7 +39,7 @@
       </a-menu>
     </a-layout-sider>
 
-    <!-- 侧边抽屉 -->
+    <!-- 侧边抽屉（封装子页面） -->
     <SettingDrawer />
 
     <a-layout>

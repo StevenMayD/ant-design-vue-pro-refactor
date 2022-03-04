@@ -65,6 +65,8 @@ import { defineComponent, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { message } from "ant-design-vue";
+// 封装校验代码到js独立文件
+import { isNullCheck } from "../../../../utils/formCheck";
 
 export default defineComponent({
   setup() {
@@ -130,17 +132,18 @@ export default defineComponent({
       ],
     };
     const nextStep = () => {
+      // 封装校验代码到js独立文件
       // 表单提交校验：通过双向绑定进行校验
-      if (formState.payAccount === "") {
+      if (isNullCheck(formState.payAccount)) {
         // form表单组件自带校验提示
         formState.payAccountStatus = "error";
         formState.payAccountHelp = "请输入付款账号!";
       }
-      if (formState.recAccount === "") {
+      if (isNullCheck(formState.recAccount)) {
         formState.recAccountStatus = "warning";
         formState.recAccountHelp = "请输入收款账号!";
       }
-      if (formState.salesman === "") {
+      if (isNullCheck(formState.salesman)) {
         formState.salesmanStatus = "success";
         formState.salesmanHelp = "请输入业务员!";
       } else {
