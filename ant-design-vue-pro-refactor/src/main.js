@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import Authorized from "./components/Authorized"; // 权限控制组件(自定义的组件)
 
 // 全局引入router后 子页面可以直接通过this.$router使用
 import router from "./router";
@@ -40,4 +41,5 @@ createApp(App)
   .use(Row)
   .use(Col)
   .use(Drawer)
+  .component("Authorized", Authorized) // 自定义组件的注册
   .mount("#app");

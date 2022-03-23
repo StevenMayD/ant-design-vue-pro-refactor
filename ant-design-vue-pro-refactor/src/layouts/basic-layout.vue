@@ -40,7 +40,9 @@
     </a-layout-sider>
 
     <!-- 侧边抽屉（封装子页面） -->
-    <SettingDrawer />
+    <Authorized :authority="['admin']">
+      <SettingDrawer />
+    </Authorized>
 
     <a-layout>
       <!-- 顶部部分（子页面公共部分） -->
