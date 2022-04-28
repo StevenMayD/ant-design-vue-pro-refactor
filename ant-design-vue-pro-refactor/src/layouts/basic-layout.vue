@@ -39,7 +39,7 @@
       </a-menu>
     </a-layout-sider>
 
-    <!-- 侧边抽屉（封装子页面） -->
+    <!-- 侧边抽屉（封装子页面）：使用组件式权限时，需要嵌套 -->
     <Authorized :authority="['admin']">
       <SettingDrawer />
     </Authorized>
