@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import Authorized from "./components/Authorized"; // 组件式权限控制(自定义的组件)
+import AuthCheckDirective from "./directives/authDirective"; // 指令式权限控制(自定义的指令)
 
 // 全局引入router后 子页面可以直接通过this.$router使用
 import router from "./router";
@@ -42,4 +43,5 @@ createApp(App)
   .use(Col)
   .use(Drawer)
   .component("Authorized", Authorized) // 自定义组件的注册写法
+  .use(AuthCheckDirective)
   .mount("#app");

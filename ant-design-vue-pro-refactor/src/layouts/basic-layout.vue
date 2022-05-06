@@ -44,6 +44,9 @@
       <SettingDrawer />
     </Authorized>
 
+    <!-- 自定义的封装组件 无法使用 自定义封装的指令 -->
+    <!-- <SettingDrawer v-authCheck="['user']"></SettingDrawer> -->
+
     <a-layout>
       <!-- 顶部部分（子页面公共部分） -->
       <a-layout-header style="background: #fff; padding: 0">
@@ -76,8 +79,8 @@
       </a-layout-header>
       <!-- 路由占位符: 用于加载子页面 -->
       <router-view />
-      <!-- 底部部分（子页面公共部分）-->
-      <a-layout-footer style="text-align: center">
+      <!-- 底部部分（子页面公共部分） 使用自定义的指令v-authCheck（指令式权限控制）-->
+      <a-layout-footer style="text-align: center" v-authCheck="['user']">
         Ant Design ©2022 Created by 董帅文
       </a-layout-footer>
     </a-layout>
