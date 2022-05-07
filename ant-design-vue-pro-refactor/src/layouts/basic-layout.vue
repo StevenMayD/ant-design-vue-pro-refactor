@@ -50,6 +50,23 @@
     <a-layout>
       <!-- 顶部部分（子页面公共部分） -->
       <a-layout-header style="background: #fff; padding: 0">
+        <div class="header">
+          <!-- menu配合<template #overlay>使用，用于作为dropdown下拉框获得焦点时的内容展示 -->
+          <a-dropdown>
+            <GlobalOutlined></GlobalOutlined>
+            <template #overlay>
+              <!-- 默认值为路由上的locale参数 -->
+              <a-menu
+                overlay
+                @click="localeChange"
+                :selectedKeys="[$route.query.locale || 'zhCN']"
+              >
+                <a-menu-item key="zhCN">中文</a-menu-item>
+                <a-menu-item key="enUS">English</a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
+        </div>
         <!-- 菜单 -->
         <a-menu
           v-if="!navLayout"
@@ -93,6 +110,7 @@ import {
   PieChartOutlined,
   UserOutlined,
   TeamOutlined,
+  GlobalOutlined,
 } from "@ant-design/icons-vue";
 import { defineComponent, ref } from "vue";
 // 命名为index.vue可以../components/SettingDrawer 否则需要引入详细地址
@@ -104,6 +122,7 @@ export default defineComponent({
     PieChartOutlined,
     UserOutlined,
     TeamOutlined,
+    GlobalOutlined,
     SettingDrawer, // 组件不是路由 需要注册组件
   },
   // computed定义响应式数据 会根据路由参数变化而变化
@@ -165,6 +184,10 @@ export default defineComponent({
         query: { ...this.$route.query },
       });
     },
+    localeChange({ key }) {
+      // 选择里的国际化记录到路由上
+      this.$router.push({ query: { ...this.$route.query, locale: key } });
+    },
   },
 });
 </script>
@@ -182,5 +205,9 @@ export default defineComponent({
 }
 [data-theme="dark"] .site-layout .site-layout-background {
   background: #141414;
+}
+.header {
+  float: right; /* 浮动到右边 */
+  margin-right: 30px; /* 右边距30 */
 }
 </style>

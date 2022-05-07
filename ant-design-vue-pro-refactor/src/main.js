@@ -24,6 +24,7 @@ import {
   Row, // 栅格
   Col, // 栅格列
   Drawer, // 抽屉
+  Dropdown, // 下拉框
 } from "ant-design-vue";
 
 // vue3.0 注册组件
@@ -42,6 +43,7 @@ createApp(App)
   .use(Row)
   .use(Col)
   .use(Drawer)
+  .use(Dropdown)
   .component("Authorized", Authorized) // 自定义组件的注册写法
-  .use(AuthCheckDirective)
+  .use(AuthCheckDirective) // 自定义指令的注册写法
   .mount("#app");
