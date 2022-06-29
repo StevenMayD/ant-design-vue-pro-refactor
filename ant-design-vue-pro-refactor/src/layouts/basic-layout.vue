@@ -184,9 +184,11 @@ export default defineComponent({
         query: { ...this.$route.query },
       });
     },
+    // 点击切换国际化
     localeChange({ key }) {
       // 选择里的国际化记录到路由上
       this.$router.push({ query: { ...this.$route.query, locale: key } });
+      this.$i18n.locale = key; // 同时赋值给i18n实例的locale属性
     },
   },
 });
