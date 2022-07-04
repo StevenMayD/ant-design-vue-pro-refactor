@@ -29,7 +29,7 @@ import {
   Row, // 栅格
   Col, // 栅格列
   Drawer, // 抽屉
-  ConfigProvider,
+  ConfigProvider, // 国际化组件
   Dropdown, // 下拉框
   DatePicker, // 日期选择器
 } from "ant-design-vue";

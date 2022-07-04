@@ -9,8 +9,10 @@
 </template>
 
 <script>
-import zhCN from "ant-design-vue/lib/locale-provider/zh_CN"; // 导入ant-design-vue的国际化库
-import enUS from "ant-design-vue/lib/locale-provider/en_US";
+import zhCN from "ant-design-vue/lib/locale-provider/zh_CN"; // ConfigProvider组件库的使用（针对vue组件的国际化）：导入ant-design-vue的中文国际化库
+import enUS from "ant-design-vue/lib/locale-provider/en_US"; // ConfigProvider组件库的使用（针对vue组件的国际化）：导入ant-design-vue的英文国际化库
+
+import moment from "moment"; // 引入moment语言包：针对vue时间类组件的国际化
 
 export default {
   data() {
@@ -22,6 +24,7 @@ export default {
     // 监听路由上的query上的locale参数，并赋值给locale变量
     "$route.query.locale": function (val) {
       this.locale = val === "enUS" ? enUS : zhCN;
+      moment.locale(val === "enUS" ? "en" : "zh-cn");
     },
   },
 };
