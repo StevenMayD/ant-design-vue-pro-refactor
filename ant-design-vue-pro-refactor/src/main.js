@@ -29,6 +29,7 @@ import {
   Row, // 栅格
   Col, // 栅格列
   Drawer, // 抽屉
+  ConfigProvider,
   Dropdown, // 下拉框
   DatePicker, // 日期选择器
 } from "ant-design-vue";
@@ -72,6 +73,7 @@ createApp(App)
   .use(Row)
   .use(Col)
   .use(Drawer)
+  .use(ConfigProvider)
   .use(Dropdown)
   .use(DatePicker)
   .use(i18n) // 传入i18n实例

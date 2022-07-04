@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <!-- 使用国际化组件 将所有页面内容包裹，参数传递locale属性 -->
-    <a-locale-provider :locale="locale">
+    <a-config-provider :locale="locale">
       <!-- 路由占位符：用于加载主体页面 -->
       <router-view />
-    </a-locale-provider>
+    </a-config-provider>
   </div>
 </template>
 
