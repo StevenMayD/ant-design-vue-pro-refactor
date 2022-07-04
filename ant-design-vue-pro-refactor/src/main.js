@@ -44,7 +44,7 @@ import {
 // vue-i18n的两个配置属性：locale、messages
 const i18n = new createI18n({
   // 从url中取locale参数 需要用到一个三方库解析url
-  locale: queryString.parse(location.search).locale || "zhCH",
+  locale: queryString.parse(location.search).locale || "zhCN", // 添加默认值
   // 配置语言包（注意是messages 不是message）
   // 方式一：使用封装的独立文件
   messages: {
