@@ -30,6 +30,7 @@ import {
   Col, // 栅格列
   Drawer, // 抽屉
   Dropdown, // 下拉框
+  DatePicker, // 日期选择器
 } from "ant-design-vue";
 
 // const messages = {
@@ -72,6 +73,7 @@ createApp(App)
   .use(Col)
   .use(Drawer)
   .use(Dropdown)
+  .use(DatePicker)
   .use(i18n) // 传入i18n实例
   .component("Authorized", Authorized) // 自定义组件的注册写法
   .use(AuthCheckDirective) // 自定义指令的注册写法

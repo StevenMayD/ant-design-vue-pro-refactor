@@ -4,7 +4,10 @@
     <!-- 内容部分 -->
     <a-layout-content style="margin: 20px 16px">
       <!-- 显示做了国际化的label：通过$t() 来使用i18n -->
-      <p>{{ $t("overview.dateLabel") }}</p>
+      <p>
+        {{ $t("overview.dateLabel") }}
+        <a-date-picker></a-date-picker>
+      </p>
       <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
         总览页
       </div>
