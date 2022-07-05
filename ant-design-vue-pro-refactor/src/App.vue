@@ -24,7 +24,7 @@ export default {
     // 监听路由上的query上的locale参数，并赋值给locale变量
     "$route.query.locale": function (val) {
       this.locale = val === "enUS" ? enUS : zhCN;
-      moment.locale(val === "enUS" ? "en" : "zh-cn"); // 国际化2：moment、时间类型组件<a-date-picker>的国际化
+      moment.locale(val === "enUS" ? "en" : "zh-cn"); // 国际化2：moment、针对ant-design-vue组件中的时间类型组件<a-date-picker>的国际化
     },
   },
 };

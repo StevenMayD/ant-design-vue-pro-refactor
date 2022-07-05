@@ -7,10 +7,10 @@ import AuthCheckDirective from "./directives/authDirective"; // 指令式权限�
 import router from "./router";
 // 仓库store，基本上就是一个容器，它包含一个属性state（应用中大部分的状态，可用于保存页面间传递的数据)
 import store from "./store";
-// 做国际化
+// 国际化3：本地自定义组件和文案国际化
 import { createI18n } from "vue-i18n"; // 引入针对自定义封装的组件：npm install --save vue-i18n
-import en_US from "./locale/enUS"; // 导入本地国际化语言包(中文)
-import zh_CN from "./locale/zhCN"; // 导入本地国际化语言包(英文)
+import en_US from "./locale/enUS"; // 导入本地自定义组件和文案的国际化语言包(中文)
+import zh_CN from "./locale/zhCN"; // 导入本地自定义组件和文案的国际化语言包(英文)
 import queryString from "query-string"; // 解析url的第三方库
 
 // 引入antdesign样式集
@@ -29,7 +29,7 @@ import {
   Row, // 栅格
   Col, // 栅格列
   Drawer, // 抽屉
-  ConfigProvider, // 国际化组件
+  ConfigProvider, // 国际化1：针对ant-design-vue组件的国际化
   Dropdown, // 下拉框
   DatePicker, // 日期选择器
 } from "ant-design-vue";
