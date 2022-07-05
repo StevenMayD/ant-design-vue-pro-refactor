@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- 使用国际化组件 将所有页面内容包裹，参数传递locale属性 -->
+    <!-- 国际化1：ConfigProvider、多数组件的国际化（使用国际化组件 将所有页面内容包裹，参数传递locale属性） -->
     <a-config-provider :locale="locale">
       <!-- 路由占位符：用于加载主体页面 -->
       <router-view />
@@ -24,7 +24,7 @@ export default {
     // 监听路由上的query上的locale参数，并赋值给locale变量
     "$route.query.locale": function (val) {
       this.locale = val === "enUS" ? enUS : zhCN;
-      moment.locale(val === "enUS" ? "en" : "zh-cn");
+      moment.locale(val === "enUS" ? "en" : "zh-cn"); // 国际化2：moment、时间类型组件<a-date-picker>的国际化
     },
   },
 };
