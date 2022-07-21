@@ -8,10 +8,12 @@
         {{ $t("overview.dateLabel") }}
         <a-date-picker></a-date-picker>
       </p>
-      <div :style="{ padding: '24px', background: '#fff', minHeight: '500px' }">
+      <div :style="{ padding: '24px', background: '#fff', minHeight: '400px' }">
         <p>总览页</p>
         <!-- 图表组件传参图表数据 -->
-        <Chart :option="chartOption" style="height: 400px; width: 90%"></Chart>
+        <Chart :option="chartOption" style="height: 350px; width: 90%"></Chart>
+        <!-- 高亮指令highlightjs，前提安装highlightjs：npm install --save highlight.js -->
+        <highlightjs :code="chartCode" />
       </div>
     </a-layout-content>
   </a-layout>
@@ -20,13 +22,24 @@
 <script>
 // 子页面中引入自定义的图表组件
 import Chart from "../../../components/Chart";
+// 接口请求
 import Request from "../../../utils/request";
+// 使用raw-loader内联静态资源：用于构建可交互的组件文档，展示代码示例
+import chartCode from "!!raw-loader!./../../../components/Chart"; // 拿到chart文件的导出字符串 (前提安装raw-loader：npm install raw-loader --save-dev)
+/* vue3中使用highlightjs代码高亮器：
+  npm install --save highlight.js   
+  npm install --save @highlightjs/vue-plugin
+*/
+import hljsVuePlugin from "@highlightjs/vue-plugin"; // 高亮组件
+import "highlight.js/styles/github.css"; // 高亮组件样式（github代码风格）
+import "highlight.js/lib/common";
 
 export default {
   data() {
     return {
       // 声明变量
       chartOption: {},
+      chartCode,
     };
   },
   mounted() {
@@ -69,6 +82,8 @@ export default {
   // 子页面中注册组件
   components: {
     Chart,
+    /* 页面上单独引入插件，不要直接在main.ts全局引入，注意：因为插件不支持响应式数据，所以不要使用ref定义响应式变量 */
+    highlightjs: hljsVuePlugin.component,
   },
 };
 </script>

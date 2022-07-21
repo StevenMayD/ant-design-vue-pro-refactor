@@ -97,7 +97,7 @@
       <!-- 路由占位符: 用于加载子页面 -->
       <router-view />
       <!-- 底部部分（子页面公共部分） 使用自定义的指令v-authCheck（指令式权限控制）-->
-      <a-layout-footer style="text-align: center" v-authCheck="['user']">
+      <a-layout-footer style="text-align: center" v-authCheck="['admin']">
         Ant Design ©2022 Created by 董帅文
       </a-layout-footer>
     </a-layout>
